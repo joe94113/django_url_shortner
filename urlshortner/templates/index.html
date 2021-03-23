@@ -90,6 +90,8 @@ section {
 </main>
 
 <script type="text/javascript">
+   //$(document).on('click','要選擇的元素',function(){})on方法包含很多事件，點擊，雙擊等等事件。
+   //和$().click()的用法一樣，最大的區別即優點是如果動態創建的元素在該選擇器選中範圍內是能觸發回調函數。
   $(document).on('submit','#post-form',function(e){
     e.preventDefault();
 
@@ -100,6 +102,7 @@ section {
         link:$('#link').val(),
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
+      // 收到後端views.create的response，回傳到h2 tag
       success: function(data){
         $('h2').html("www.surls.ga/"+data)
       }
