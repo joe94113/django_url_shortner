@@ -1,6 +1,6 @@
 import uuid  # 通用唯一辨識碼（Universally Unique Identifier，縮寫為 UUID）
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Url
 
@@ -17,3 +17,9 @@ def create(request):
         new_url = Url(link=link, uuid=uid)
         new_url.save()
         return HttpResponse(uid)
+
+
+def go(request, pk):
+    url_details = Url.objects.get(uuid=pk)  # 取得資料庫中uuid=input pk
+    return redirect(url_details.link)  # 返回資料庫中指定object的連結
+
